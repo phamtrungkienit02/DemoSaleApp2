@@ -9,7 +9,11 @@ import utils
 @app.route("/")
 def home():
     cates = utils.load_categories()
-    return render_template('index.html', categories=cates)
+    products = utils.load_products()
+
+    return render_template('index.html',
+                           categories=cates,
+                           products = products)
 #tao ra duong dan qua trang moi
 @app.route("/products")
 def product_list():

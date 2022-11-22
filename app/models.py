@@ -5,6 +5,8 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, ForeignKey
 # moi quan he
 from sqlalchemy.orm import relationship
+from unicodedata import category, name
+
 #
 from app import db, app
 
@@ -57,9 +59,50 @@ class Product(BaseModel):
 
 # thuc thi chay csdl, anh xa xuong chay csdl
 if __name__ == '__main__':
-    # thuc hien
-    with app.app_context():
-        db.create_all()
+    # # thuc hien
+    # with app.app_context():
+    #     #tao bang
+    #     db.create_all()
+    #     # day len server
+    #     db.session.commit()
 
-        # day len server
-        db.session.commit()
+    # with app.app_context():
+    #     c1 = Category(name="Điện thoại Galaxy")
+    #     c2 = Category(name='Đồng hồ')
+    #     c3 = Category(name='Laptop')
+    #
+    #     db.session.add(c1)
+    #     db.session.add(c2)
+    #     db.session.add(c3)
+    #
+    #     db.session.commit()
+
+    products = [{
+        "id": 1,
+        "name": "iPhone 7 Plus",
+        "description": "Apple, 32GB, RAM: 3GB, iOS13",
+        "price": 17000000,
+        "image": "images/p1.png",
+        "category_id": 1
+    }, {
+        "id": 2,
+        "name": "iPad Pro 2020",
+        "description": "Apple, 128GB, RAM: 6GB",
+        "price": 37000000,
+        "image": "images/p2.jpg",
+        "category_id": 2
+    }, {
+        "id": 3,
+        "name": "Galaxy Note 10 Plus",
+        "description": "Samsung, 64GB, RAML: 6GB",
+        "price": 24000000,
+        "image": "images/p3.jpg",
+        "category_id": 1
+    }]
+
+    # with app.app_context():
+    #     for p in products:
+    #         pro = Product(name=p['name'], price=p['price'], image=p['image'],
+    #                       description=p['description'], category_id=p['category_id'])
+    #         db.session.add(pro)
+    #     db.session.commit()
